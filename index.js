@@ -1,4 +1,6 @@
-const test = {a:'100',b:'200'}
-for(let x in test){
-  console.log(x);
+const z = 'a'
+function x (y=z){
+  console.log(y);
 }
+
+x()
