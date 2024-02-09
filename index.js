@@ -1,6 +1,3 @@
-const z = 'a'
-function x (y=z){
-  console.log(y);
-}
+const j = require('./test.json')
 
-x()
+console.log(j);
