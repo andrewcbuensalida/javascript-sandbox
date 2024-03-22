@@ -2,6 +2,7 @@ class Person {
   constructor(name){
     this.name = name
   }
+  // private
   #attack(){
     console.log('attacking')
   }
@@ -12,6 +13,8 @@ class Person {
 }
 
 const p1 = new Person('joe')
-console.log(`Example p1: `, p1)
+console.log(`Example p1.name: `, p1['name'])
 p1.greet()
 
+const x = {a:'b'}
+console.log(x['a']);
