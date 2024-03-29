@@ -29,5 +29,5 @@ var permuteUnique = function (nums) {
 	}
 };
 
-const result = permuteUnique("bca");
+const result = permuteUnique("jok");
 console.log("result: ", result);
