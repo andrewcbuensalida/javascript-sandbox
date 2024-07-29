@@ -5,6 +5,7 @@ function TreeNode(val, left, right) {
 }
 /**
  * @param {TreeNode} root
+ * @description Given the root of a binary tree, return the inorder traversal of its nodes' values.
  * @return {number[]}
  */
 var inorderTraversal = function (root) {
