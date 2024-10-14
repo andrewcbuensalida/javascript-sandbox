@@ -10,7 +10,7 @@ var numUniqueEmails = function (emails) {
 		const indexOfPlus = email.indexOf("+");
 		// split local and domain
 		const local = email.slice(0, indexOfAt);
-		const domain = email.slice(indexOfAt, email.length);
+		const domain = email.slice(indexOfAt);
     let localNoFilter = local
 		// if there's a + in local
 		if (indexOfPlus !== -1) {
@@ -18,10 +18,7 @@ var numUniqueEmails = function (emails) {
 			localNoFilter = local.slice(0, indexOfPlus);
 		}
 		// in local, remove dots
-		const localNoDots = localNoFilter
-			.split("")
-			.filter((char) => char !== ".")
-			.join("");
+		const localNoDots = localNoFilter.replaceAll('.','') // OR could do localNoFilter.split('').filter(c=>c!=='.').join('')
 		// join clean local and domain
 		const cleanEmail = localNoDots + domain;
 		// add to set
@@ -39,3 +36,6 @@ var numUniqueEmails = function (emails) {
 // 		"testemail+david@lee.tcode.com",
 // 	])
 // );
+
+const test = 'abc.de.f'
+console.log(test.replaceAll('.',''));
