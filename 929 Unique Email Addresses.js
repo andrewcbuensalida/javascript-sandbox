@@ -29,13 +29,5 @@ var numUniqueEmails = function (emails) {
 	return cleanSet.size;
 };
 
-// console.log(
-// 	numUniqueEmails([
-// 		"test.email+alex@leetcode.com",
-// 		"test.e.mail+bob.cathy@leetcode.com",
-// 		"testemail+david@lee.tcode.com",
-// 	])
-// );
+console.log(numUniqueEmails(["linqmafia@leet+code.com", "linqmafia@code.com"]));
 
-const test = 'abc.de.f'
-console.log(test.replaceAll('.',''));
