@@ -1,0 +1,12 @@
+GET /api/v1/authors 
+GET /api/v1/authors/:authorId
+POST /api/v1/author body {}
+GET /api/v1/books
+POST /api/v1/books body {
+  authorIds:[1,2],
+  desc:'asdf',
+  title:'asdf'
+}
+PUT /api/v1/books
+DELETE /api/v1/books?id=1
+
