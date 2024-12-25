@@ -11,11 +11,11 @@ Person.prototype.gender = 'male'
 console.log(`Example p.age: `, p.age) // undefined
 console.log(`Example p.name: `, p.name) // undefined
 Person.name = 'test'
-console.log(`Example p.name: `, p.name) // test
+console.log(`Example p.name: `, p.name) // undefined
 console.log(`Example p2.name: `, p2.name) // undefined
 console.log(`Example Person.name2: `, Person.name2) // undefined
 console.log(`Example Person.gender: `, Person.gender) // undefined
-console.log(`Example Person.prototype.gender: `, Person.prototype.gender) // 
+console.log(`Example Person.prototype.gender: `, Person.prototype.gender) // male
 console.log(`Example Person: `, Person); // [[class a]] { name: 'a', age: 35 }
 console.log(`Example p: `, p); // a { name2: 'b' }
 console.log(`Example p.gender: `, p.gender) // male
