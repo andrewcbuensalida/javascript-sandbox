@@ -5,44 +5,48 @@ const cors = require("cors");
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server,path: "/ws" });
+const wss = new WebSocket.Server({ server, path: "/ws" });
 
 // Don't need this
 // app.use(cors());
 
 wss.on("connection", (ws, req) => {
-  const openaiWs = new WebSocket("ws://localhost:8766/ws");
+	const openaiWs = new WebSocket("ws://localhost:8766/ws");
 
-  openaiWs.on("open", () => {
-    ws.on("message", async (message) => {
-      console.log(`Received from Twilio: ${message}`);
-      openaiWs.send(message);
-    });
+	openaiWs.on("open", () => {
+		ws.on("message", async (message) => {
+			console.log(`Received from Twilio: ${message}`);
+			openaiWs.send(message);
+		});
 
-    openaiWs.on("message", async (openaiMessage) => {
-      openaiMessage = openaiMessage.toString();
-      console.log(`Received from OpenAI: ${openaiMessage}`);
-      if (openaiMessage === "tool") {
-        openaiWs.send("trigger please wait");
-      } else if (openaiMessage === "wait") {
-        ws.send("wait");
-        ws.send("typing");
-        const results = await executeTools();
-        openaiWs.send(results);
-        ws.send("stop typing");
-      } else {
-        ws.send(openaiMessage);
-      }
-    });
-  });
+		openaiWs.on("message", async (openaiMessage) => {
+			openaiMessage = openaiMessage.toString();
+			console.log(`Received from OpenAI: ${openaiMessage}`);
+			if (openaiMessage === "tool") {
+				openaiWs.send("trigger please wait");
+			} else if (openaiMessage === "wait") {
+				ws.send("wait");
+				ws.send("typing");
+				const results = await executeTools();
+				openaiWs.send(results);
+				ws.send("stop typing");
+			} else {
+				ws.send(openaiMessage);
+			}
+		});
+	});
 
-  async function executeTools() {
-    console.log(`Executing tools at ${new Date()}`);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    const toolResults = "sunny";
-    console.log("Tools executed");
-    return toolResults;
-  }
+	async function executeTools() {
+		console.log(`Executing tools at ${new Date()}`);
+		await new Promise((resolve) => setTimeout(resolve, 5000));
+		const toolResults = "sunny";
+		console.log("Tools executed");
+		return toolResults;
+	}
+
+	ws.on("close", () => {
+		console.log("❌ websocket connection closed");
+	});
 });
 
 server.listen(8765, () => {
